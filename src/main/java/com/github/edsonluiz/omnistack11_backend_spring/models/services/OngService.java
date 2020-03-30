@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface OngService {
   public List<Ong> findAll();
-  public Ong findById(Long id);
+  public Ong findById(String id);
   public Ong save(Ong ong);
-  public void deleteById(Long id);
+  public void deleteById(String id);
 }

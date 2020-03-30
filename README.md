@@ -4,11 +4,12 @@
 
 - [X] Recurso para criação de uma ong.
     - [X] Validação dos dados enviados no corpo da requisição
-    - [X] Retorno com uma mensagem de erro com os campos inválidos
+    - [X] Gerar e utilizar UUID como PK no banco de dados.
+    - [X] Retorno com uma mensagem de erro com os campos inválidos.
 - [X] Armazenamento em banco de dados SQL.
 - [X] Recurso para listagem de ONGs.
 - [ ] Recurso para alterar dados de uma ONG.
-- [ ] Recurso para deleção de uma ONG
+- [ ] Recurso para deleção de uma ONG.
 
 
 

@@ -4,8 +4,6 @@ package com.github.edsonluiz.omnistack11_backend_spring.models.entities;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -18,8 +16,7 @@ public class Ong implements Serializable {
   private static final long serialVersionUID = 6041467582811809570L;
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private String id;
 
   @NotBlank(message = "Name should not be blank")
   private String name;
@@ -39,11 +36,11 @@ public class Ong implements Serializable {
   @Length(min = 2, max = 2, message = "UF should not have more than 2 characters")
   private String uf;
 
-  public Long getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(String id) {
     this.id = id;
   }
 
