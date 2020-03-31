@@ -1,14 +1,13 @@
 package com.github.edsonluiz.omnistack11_backend_spring.models.entities;
 
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.Length;
+
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import org.hibernate.validator.constraints.Length;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "ongs")
@@ -16,12 +15,16 @@ public class Ong implements Serializable {
   private static final long serialVersionUID = 6041467582811809570L;
 
   @Id
-  private String id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  @JsonIgnore
+  private String ong_id;
 
   @NotBlank(message = "Name should not be blank")
   private String name;
 
-  @Email(message = "Email sould be valid")
+  @Email(message = "Email should be valid")
   @Column(unique = true, nullable = false)
   private String email;
 
@@ -36,11 +39,11 @@ public class Ong implements Serializable {
   @Length(min = 2, max = 2, message = "UF should not have more than 2 characters")
   private String uf;
 
-  public String getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -82,5 +85,13 @@ public class Ong implements Serializable {
 
   public void setUf(String uf) {
     this.uf = uf;
+  }
+
+  public String getOng_id() {
+    return ong_id;
+  }
+
+  public void setOng_id(String ong_id) {
+    this.ong_id = ong_id;
   }
 }

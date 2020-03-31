@@ -2,21 +2,17 @@ package com.github.edsonluiz.omnistack11_backend_spring.controllers;
 
 import com.github.edsonluiz.omnistack11_backend_spring.models.entities.Ong;
 import com.github.edsonluiz.omnistack11_backend_spring.models.services.OngService;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/ongs")
@@ -31,8 +27,11 @@ public class OngController {
   }
 
   @PostMapping()
-  public Ong store(@Validated @RequestBody Ong ong) {
-    return ongService.save(ong);
+  public ResponseEntity<?> store(@Validated @RequestBody Ong ong) {
+    Ong operationResult = ongService.save(ong);
+    Map<String, String> json = new HashMap<>();
+    json.put("ong_id", operationResult.getOng_id());
+    return new ResponseEntity<>(json, HttpStatus.CREATED);
   }
 
   @ResponseStatus(HttpStatus.BAD_REQUEST)
