@@ -26,6 +26,11 @@ public class OngController {
     return ongService.findAll();
   }
 
+  @GetMapping("/{id}")
+  public ResponseEntity<?> show(@PathVariable Long id) {
+    return new ResponseEntity<Ong>(ongService.findById(id), HttpStatus.OK);
+  }
+
   @PostMapping()
   public ResponseEntity<?> store(@Validated @RequestBody Ong ong) {
     Ong operationResult = ongService.save(ong);
